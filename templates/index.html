@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Scraper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Web Scraper</h1>
+        <form action="/" method="POST">
+            <input type="text" name="url" placeholder="Enter website URL" required>
+            <button type="submit">Scrape</button>
+        </form>
+
+        {% if scraped_data %}
+            <h2>Scraped Data:</h2>
+            <div class="data-box">
+                <pre>{{ scraped_data }}</pre>
+            </div>
+            <h2>Ask a Question:</h2>
+            <form action="/" method="POST">
+                <input type="hidden" name="scraped_data" value="{{ scraped_data|e }}">
+                <input type="text" name="question" placeholder="Enter your question" required>
+                <button type="submit">Ask</button>
+            </form>
+            {% if response %}
+                <h2>Response:</h2>
+                <p>{{ response }}</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
