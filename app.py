@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import google.generativeai as genai
 import requests
 from bs4 import BeautifulSoup
+import os
 
 app = Flask(__name__)
 
